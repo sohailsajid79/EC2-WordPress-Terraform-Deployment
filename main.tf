@@ -77,7 +77,7 @@ resource "aws_instance" "web" {
     ami             = "ami-079bd1a083298389f" # Amazon Linux 2 AMI
     instance_type   = "t2.micro"
     subnet_id       = aws_subnet.subnet.id
-    security_groups = [aws_security_group.sg.name]
+    #security_groups = [aws_security_group.sg.name]
     vpc_security_group_ids = [aws_security_group.sg.id] # security group IDs
 
     user_data = <<-EOF
