@@ -14,7 +14,7 @@ This project demonstrates the deployment of a WordPress site on an EC2 instance 
 
 1. [Prerequisites](#prerequisites)
 2. [Installation](#installation)
-3. [Terraform Configuration](#terraform-configuration)
+3. [Configuration](#configuration)
 4. [Deployment](#deployment)
 5. [Accessing WordPress Site](#accessing-wordpress-site)
 6. [Cleanup](#cleanup)
