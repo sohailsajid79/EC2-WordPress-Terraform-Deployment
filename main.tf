@@ -79,6 +79,7 @@ resource "aws_instance" "web" {
     subnet_id       = aws_subnet.subnet.id
     #security_groups = [aws_security_group.sg.name]
     vpc_security_group_ids = [aws_security_group.sg.id] # security group IDs
+    key_name = "ssh_key"
 
     user_data = <<-EOF
               #!/bin/bash
