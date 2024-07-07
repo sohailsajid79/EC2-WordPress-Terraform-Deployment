@@ -80,13 +80,15 @@ This project demonstrates the deployment of a WordPress site on an EC2 instance 
 1. Access via SSH:
 
 ```sh
+    ssh -i <key.pem> ec2-user@<public_ip_address>
 
+    # Replace <key.pem> with your key file path and <public_ip_address> with the IP address of your EC2 instance.
 ```
 
 2. Access WordPress in the browser:
 
 ```sh
-
+    http://<public_ip_address>
 ```
 
 ## Cleanup
