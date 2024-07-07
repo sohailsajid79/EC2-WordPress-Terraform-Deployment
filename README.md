@@ -85,11 +85,72 @@ This project demonstrates the deployment of a WordPress site on an EC2 instance 
     # Replace <key.pem> with your key file path and <public_ip_address> with the IP address of your EC2 instance.
 ```
 
-2. Access WordPress in the browser:
+![ssh-ec2](./assets/ssh-ec2.png)
+
+2. Additional Configuration:
+
+- Install, Start and Enable Apache:
+
+  - `sudo yum install -y httpd`
+  - `sudo systemctl start httpd`
+  - `sudo systemctl enable httpd`
+
+- Install PHP & MySQL and Enable:
+
+  - `sudo yum install -y php php-mysqlnd mariadb-server`
+  - `sudo amazon-linux-extras enable php7.4`
+  - `sudo yum clean metadata`
+  - `sudo yum install php php-cli php-common php-mbstring php-xml php-mysqlnd`
+  - `sudo systemctl start mariadb`
+  - `sudo systemctl enable mariadb`
+
+- Set Up MySQL:
+
+  - `sudo mysql_secure_installation`
+
+- Login MySQL:
+
+  - `sudo mysql -u root -p`
+
+- Create DB & WordPress User:
+
+  - `CREATE DATABASE wordpress;`
+  - `CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'password';`
+  - `GRANT ALL PRIVILEGES ON wordpress.\* TO 'wordpressuser'@'localhost';`
+  - `FLUSH PRIVILEGES;`
+  - `EXIT;`
+
+- Install WordPress:
+
+  - `cd /var/www/html`
+  - `sudo wget http://wordpress.org/latest.tar.gz`
+  - `sudo tar -xvzf latest.tar.gz`
+  - `sudo cp -r wordpress/* /var/www/html/`
+  - `sudo rm -rf wordpress latest.tar.gz`
+  - `sudo chown -R apache:apache /var/www/html/`
+  - `sudo systemctl restart httpd`
+
+- Configure WordPress
+  - `sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php`
+  - `sudo vi /var/www/html/wp-config.php`
 
 ```sh
-    http://<public_ip_address>
+    // ** MySQL settings ** //
+        define('DB_NAME', 'wordpress');
+        define('DB_USER', 'wordpressuser');
+        define('DB_PASSWORD', 'password');
+        define('DB_HOST', 'localhost');
+        define('DB_CHARSET', 'utf8');
+        define('DB_COLLATE', '');
 ```
+
+3. Access WordPress in the browser:
+
+```sh
+    http://18.134.148.32/wp-admin/
+```
+
+![ssh-ec2](./assets/wordpress-ec2.png)
 
 ## Cleanup
 
