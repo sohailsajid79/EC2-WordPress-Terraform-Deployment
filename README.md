@@ -21,14 +21,14 @@ SSH on to the EC2 instance and configure the webserver with further installation
 5. [Accessing WordPress Site](#accessing-wordpress-site)
 6. [Cleanup](#cleanup)
 
-## 1. Prerequisites
+## Prerequisites
 
 - Congifured AWS account
 - AWS CLI configured with secure credentials
 - Terraform installed on local machine
 - SSH key pair for EC2 instance access
 
-## 2. Installation
+## Installation
 
 2.1 Install AWS CLI:
 
@@ -48,7 +48,7 @@ SSH on to the EC2 instance and configure the webserver with further installation
 2.3 Install Terraform:
 Follow the instructions on the [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) documentation.
 
-## 3. Configuration
+## Configuration
 
 3.1 Clone the repo:
 
@@ -59,7 +59,7 @@ Follow the instructions on the [Terraform](https://developer.hashicorp.com/terra
 
 3.2 Update the Terraform configuration (main.tf) with the SSH key pair:
 
-## 4. Deployment
+## Deployment
 
 ```sh
     terraform init
@@ -77,7 +77,7 @@ Follow the instructions on the [Terraform](https://developer.hashicorp.com/terra
     # 'yes' to confirm the execution plan
 ```
 
-## 5. Accessing WordPress Site
+## Accessing WordPress Site
 
 5.1 Access via SSH:
 
@@ -213,7 +213,7 @@ Access phpMyAdmin from the Front-End::
 
 ![ssh-ec2](./assets/phpmyadmin.png)
 
-## 6. Cleanup
+## Cleanup
 
 Avoid incurring charges by destroying the infrastructure when no longer needed:
 
