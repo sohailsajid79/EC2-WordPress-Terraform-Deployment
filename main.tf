@@ -99,15 +99,22 @@ resource "aws_instance" "web" {
     user_data = <<-EOF
               #!/bin/bash
               yum update -y
-              yum install -y httpd php mysql php-mysql
-              cd /var/www/html
-              wget http://wordpress.org/latest.tar.gz
-              tar -xvzf latest.tar.gz
-              cp -r wordpress/* /var/www/html/
-              rm -rf wordpress latest.tar.gz
-              chown -R apache:apache /var/www/html/
-              systemctl enable httpd
+              amazon-linux-extras enable php7.4
+              yum clean metadata
+              yum install -y httpd php php-mysqlnd mariadb-server
               systemctl start httpd
+              systemctl enable httpd
+              systemctl start mariadb
+              systemctl enable mariadb
+
+              cd /var/www/html
+              sudo wget http://wordpress.org/latest.tar.gz
+              sudo tar -xvzf latest.tar.gz
+              sudo cp -r wordpress/* /var/www/html/
+              sudo rm -rf wordpress latest.tar.gz
+              sudo chown -R apache:apache /var/www/html/
+              sudo chown -R apache:apache /var/www/html/
+              sudo systemctl restart httpd             
               EOF
 
     tags = {
